@@ -1,0 +1,182 @@
+<h1>Projects</h1>
+
+<p *ngIf="!projects"><em>Loading...</em></p>
+
+<fieldset>
+  <legend>Filter By:</legend>
+  <button class="btn btn-small btn-dark" (click)="showFilter=!showFilter">
+    <i [ngClass]="showFilter ? 'fa fa-minus' : 'fa fa-plus'"></i>
+  </button>
+  <div *ngIf="this.showFilter">
+    <label>Project State:</label>
+    <select id="sel-state" (change)="filterProjects($event.target.value)">
+      <option value="0">--All--</option>
+      <option *ngFor="let ps of projectStates" value={{ps.id}}>{{ps.code}}</option>
+    </select>
+  </div>
+</fieldset>
+
+<mat-form-field>
+  <input matInput placeholder="Search Projects" #input (keyup) ="searchProjects(input.value)">
+</mat-form-field>
+
+<br />
+<h4>Material Table - With Table Tags</h4>
+<br />
+
+<div class="projects-container mat-elevation-z8" *ngIf="projects">
+
+  <table mat-table #table [dataSource]="projects" matSort matSortDisableClear (matSortChange)="sortData($event)" aria-label="Projects">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let row">
+        <a [routerLink]="['/project',row.id]" routerLinkActive="active">{{ row.id }}</a>
+      <!--{{row.id}}-->
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let row">{{row.projectName}}</td>
+    </ng-container>
+
+    <!-- Code Column -->
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+      <td mat-cell *matCellDef="let row">{{row.projectCode}}</td>
+    </ng-container>
+
+    <!-- Due date Column -->
+    <ng-container matColumnDef="duedate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Due Date</th>
+      <td mat-cell *matCellDef="let row">{{row.projectDueDate | date:'MM-dd-yyyy'}}</td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+      <td mat-cell *matCellDef="let row">{{row.projectDescription}}</td>
+    </ng-container>
+
+    <!-- Wkly Sched Column -->
+    <ng-container matColumnDef="wklysched">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Wkly Sched</th>
+      <td mat-cell *matCellDef="let row">{{row.wklySched}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        (click)="selectedRows.push(row)"
+        [style.background]="selectedRows.indexOf(row) != -1 ? 'lightblue' : ''"></tr>
+  </table>
+  <!--<mat-paginator #paginator
+                 [length]="dataSource.data.length"
+                 [pageIndex]="0"
+                 [pageSize]="50"
+                 [pageSizeOptions]="[25, 50, 100, 250]">
+  </mat-paginator>-->
+</div>
+
+<br />
+<h4>Regular Table</h4>
+<br />
+
+<table class='table' *ngIf="projects">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Code</th>
+      <th>Due Date</th>
+      <th>Description</th>
+      <th>Weekly Schedule</th>
+    </tr>
+  </thead>
+  <tbody class="projects">
+    <tr *ngFor="let project of projects"
+        [class.selected]="project === selectedProject" (click)="onSelect(project)" (dblclick)="edit(project.id)">
+      <td>
+        <a [routerLink]="['/project',project.id]" routerLinkActive="active">{{ project.id }}</a>
+      </td>
+      <td>{{ project.projectName }}</td>
+      <td>{{ project.projectCode }}</td>
+      <td>{{ project.projectDueDate }}</td>
+      <td>{{ project.projectDescription }}</td>
+      <td>{{ project.wklySched }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+<h4>Material Table - No Table Tags</h4>
+<br />
+
+<div class="mat-elevation-z8">
+
+  <mat-table #table [dataSource]="projects" matSort aria-label="Projects">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.projectName}}</mat-cell>
+    </ng-container>
+
+    <!-- Code Column -->
+    <ng-container matColumnDef="code">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Code</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.projectCode}}</mat-cell>
+    </ng-container>
+
+    <!-- Due date Column -->
+    <ng-container matColumnDef="duedate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Due Date</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.projectDueDate}}</mat-cell>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.projectDescription}}</mat-cell>
+    </ng-container>
+
+    <!-- Wkly Sched Column -->
+    <ng-container matColumnDef="wklysched">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Wkly Sched</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.wklySched}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+             (click)="selectedRows.push(row)"
+             [style.background]="selectedRows.indexOf(row) != -1 ? 'lightblue' : ''">
+    </mat-row>
+  </mat-table>
+  <!--<mat-paginator #paginator
+                 [length]="dataSource.data.length"
+                 [pageIndex]="0"
+                 [pageSize]="50"
+                 [pageSizeOptions]="[25, 50, 100, 250]">
+  </mat-paginator>-->
+</div>
+
+<!--
+<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true">
+  For the paginator i added a class to mat-paginator:
+
+  <mat-paginator ...
+                 class="mat-paginator-sticky">
+    with a class based on the answer in the link @frederik provided in the comments
+
+    .mat-paginator-sticky {
+    bottom: 0px;
+    position: sticky;
+    z-index: 10;
+    }
+    shareimprove this answer-->

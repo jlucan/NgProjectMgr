@@ -1,0 +1,14 @@
+<div *ngIf="project" class="project">
+  <h2>{{project.Projectname}}</h2>
+  <div>
+    <span>id: </span>{{project.id}}
+  </div>
+  <label>
+    Name:
+    <input type="text" [(ngModel)]="project.projectName" placeholder="Project Name" />
+  </label>
+  <label>
+    Code:
+    <input type="text" [(ngModel)]="project.projectCode" placeholder="Project Code" />
+  </label>
+</div>

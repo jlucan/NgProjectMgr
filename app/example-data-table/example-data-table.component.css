@@ -1,0 +1,66 @@
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mat-header-cell {
+  font-family:'Comic Sans MS';
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.mat-header-row {
+  top: 0;
+  position: sticky;
+  z-index: 1;
+  background-color: inherit;
+}
+
+
+.mat-column-id {
+  justify-content:center;
+  align-items:center;
+  color: blue;
+  border-right: 1px solid grey;
+}
+
+.mat-column-symbol {
+  justify-content:center;
+  color:red;
+}
+
+.course-thumbnail {
+  width: 150px;
+  margin: 20px auto 0 auto;
+  display: block;
+}
+
+.description-cell {
+  text-align: left;
+  margin: 10px auto;
+}
+
+.duration-cell {
+  text-align: center;
+}
+
+  .duration-cell mat-icon {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+  }
+
+.spinner-container {
+  height: 360px;
+  width: 390px;
+  position: fixed;
+}
+
+.lessons-table {
+  min-height: 360px;
+  margin-top: 10px;
+}
+
+.spinner-container mat-spinner {
+  margin: 130px auto 0 auto;
+}

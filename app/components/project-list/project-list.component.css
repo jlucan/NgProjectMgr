@@ -1,0 +1,135 @@
+.projects-container {
+  height: 400px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-header-row {
+  background-color: antiquewhite;
+
+}
+
+.mat-header-cell {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+  padding-left: .5em;
+  white-space: nowrap;
+}
+
+td.mat-column-id {
+  padding-left: 0 !important;
+  text-align: center !important;
+}
+
+td.mat-column-duedate {
+  text-align: center !important;
+  white-space: nowrap;
+}
+
+
+.mat-cell {
+  padding-left: .5em;
+  padding-right: .5em;
+  border: 1px solid lightgrey;
+  color: #002db3;
+}
+
+.mat-row {
+  background-color: whitesmoke;
+}
+
+/*th, td {
+  width: 15%;
+  border-left: 1px solid green;
+  border-right: 1px solid green;
+}*/
+
+/*thead tr {
+  display: block;
+  width:100%;
+  border: 1px solid red;
+  top: 0;
+  position: sticky;
+  z-index: 1;
+}*/
+
+/*tbody {
+  display: block;
+  overflow: auto;
+  height: 200px;
+  width: 100%;
+  border: 1px solid red;
+}*/
+
+/*.mat-table tbody {
+  display: block;
+  overflow: auto;
+  height: 200px;
+  width: 100%;
+  background-color: cornsilk !important;
+}*/
+
+/*.mat-column-id {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  flex: 0 0 3em;
+}*/
+
+/*.mat-row > .mat-cell {
+  color: blue;
+  padding-left: 1%;
+  padding-right: 1%;
+}*/
+
+/*.mat-header-row > .mat-cell {
+  padding-left: 1%;
+  padding-right: 1%;
+  color:chocolate;
+}*/
+
+/*thead {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}*/
+
+/*.mat-row {
+  background-color: whitesmoke;
+}*/
+
+/*.mat-header-row {
+  top: 0;
+  position: sticky;
+  z-index: 1;
+  background-color: inherit;*/
+
+  /*background-color: antiquewhite;
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0 !important;
+}*/
+
+/*th {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+  padding-left: 1em !important;
+}*/
+
+
+
+/*tbody.projects tr {
+  color: #000acb;
+  cursor: pointer;
+}*/
+
+/*tbody.projects tr.selected {
+  background-color: #cccccc;
+}*/
+
